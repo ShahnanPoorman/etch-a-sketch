@@ -9,6 +9,10 @@ for(let i = 0; i < 256; i++){
     newDiv.style.backgroundColor = '';
     newDiv.style.border = '.5px solid lightgrey';
 
+    newDiv.addEventListener('mouseover', (e) => {
+        e.target.classList.toggle('sketched');
+    })
+
     container.appendChild(newDiv);
 }
 
