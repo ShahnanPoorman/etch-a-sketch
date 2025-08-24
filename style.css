@@ -16,22 +16,31 @@ h1{
     text-align: center;
 }
 
-#new-grid{
+#container, #controls{
     justify-self: center;
     align-self: center;
+    border: 5px solid black;
+    width: 810px;
 }
 
 #container{
     display: flex;
     flex-wrap: wrap;
     gap: 0;
-    justify-self: center;
-    align-self: center;
     height: 810px;
-    width: 810px;
     background-color: white;
-    border: 5px solid black;
 }
+
+#controls{
+    border-top: 0;
+    height: 50px;
+    padding: 10px;
+}
+
+button{
+    padding: 10px;
+}
+
 
 .sketched{
     background-color: black;

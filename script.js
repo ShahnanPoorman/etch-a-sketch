@@ -1,19 +1,7 @@
 const container = document.querySelector('#container')
+const grid_stats = document.querySelector('#grid-size');
 
-
-for(let i = 0; i < 256; i++){
-    const newDiv = document.createElement("div");
-
-    newDiv.style.flex = '1 0 6.25%';
-    newDiv.style.backgroundColor = '';
-    newDiv.style.border = '.5px solid lightgrey';
-
-    newDiv.addEventListener('mouseover', (e) => {
-        e.target.classList.toggle('sketched');
-    })
-
-    container.appendChild(newDiv);
-}
+window.addEventListener('load', makeGrid());
 
 function makeGrid(squares = 16){
     container.innerHTML=''
@@ -27,7 +15,7 @@ function makeGrid(squares = 16){
         newDiv.addEventListener('mouseover', (e) => {
             e.target.classList.toggle('sketched');
         })
-
+        grid_stats.innerHTML=(squares + " x " + squares);
         container.appendChild(newDiv);
     }
 
