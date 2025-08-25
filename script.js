@@ -1,13 +1,22 @@
 const container = document.querySelector('#container')
 const grid_stats = document.querySelector('#grid-size');
-
-window.addEventListener('load', makeGrid());
-
 const butt = document.querySelector('#new-grid');
+const reset = document.querySelector('#reset');
+const clear = document.querySelector('#clear');
+
+window.addEventListener('load', () => makeGrid());
+reset.addEventListener('click', () => makeGrid());
+
 butt.addEventListener("click", () => {
     let dimensions = prompt('New grid squares per side?(max 100) e.g. \'16\' ');
     (dimensions) ? makeGrid(dimensions) : makeGrid();
 
+})
+
+clear.addEventListener('click', () => {
+
+    let boxes = document.querySelectorAll(".box");
+    boxes.forEach(box => box.classList.remove("sketched"))
 })
 
 function makeGrid(squares = 16){
@@ -21,6 +30,7 @@ function makeGrid(squares = 16){
         newDiv.style.flex = `1 0 ${100/squares}%`;
         newDiv.style.backgroundColor = '';
         newDiv.style.border = '.5px solid lightgrey';
+        newDiv.setAttribute("class", "box");
 
         newDiv.addEventListener('mouseover', (e) => {
             e.target.classList.toggle('sketched');
