@@ -4,6 +4,7 @@ const butt = document.querySelector('#new-grid');
 const reset = document.querySelector('#reset');
 const clear = document.querySelector('#clear');
 
+
 window.addEventListener('load', () => makeGrid());
 reset.addEventListener('click', () => makeGrid());
 
@@ -20,6 +21,7 @@ clear.addEventListener('click', () => {
 })
 
 function makeGrid(squares = 16){
+    const rainbow = document.querySelector('#rainbow');
     container.innerHTML='';
     (squares > 100) ? (squares = 100) : null;
     (squares < 1) ? (squares = 16) : null;
@@ -33,10 +35,31 @@ function makeGrid(squares = 16){
         newDiv.setAttribute("class", "box");
 
         newDiv.addEventListener('mouseover', (e) => {
-            e.target.classList.toggle('sketched');
-        })
+            if(rainbow.checked){
+                e.target.classList.remove('sketched');
+                if (e.target.style.backgroundColor){
+                    e.target.style.backgroundColor = '';
+                }
+                else{
+                    e.target.style.backgroundColor = getRandomHexColor();   
+                }
+                
+                
+            } 
+            else{
+                if (e.target.style.backgroundColor) {
+                    e.target.style.backgroundColor = '';
+                }
+                e.target.classList.toggle('sketched');
+            }
+        });
         grid_stats.innerHTML=(squares + " x " + squares);
         container.appendChild(newDiv);
     }
 
+}
+
+function getRandomHexColor() {
+    const hex = Math.floor(Math.random() * 0xFFFFFF).toString(16);
+    return `#${hex.padStart(6, '0')}`; // ensures 6 digits
 }
